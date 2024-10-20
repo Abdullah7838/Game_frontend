@@ -83,7 +83,7 @@ function Tasks() {
     const interval = setInterval(() => {
       setRandomPhone(generateRandomPhoneNumber());
       setRandomAmount(generateRandomAmount());
-    }, 1000); // Updates every 3 seconds
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
