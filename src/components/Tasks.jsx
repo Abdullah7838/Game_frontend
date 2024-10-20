@@ -29,7 +29,7 @@ function Tasks() {
   }, [count]);
 
   const handleWhatsAppShare = () => {
-    const message = encodeURIComponent(`Hi, I am ${name} and I’m excited to share that I have earned some income. You can check out the project here: Game Frontend.`);
+    const message = encodeURIComponent(`Hi, I am ${name} and I’m excited to share that I have earned some income. You can check out the project here: https://game-frontend-neon.vercel.app/`);
     const whatsappUrl = `https://wa.me/?text=${message}`;
     window.open(whatsappUrl, '_blank');
 
@@ -45,7 +45,7 @@ function Tasks() {
   };
 
   const handleWhatsAppStatus = () => {
-    const message = encodeURIComponent(`Hi, I am ${name} and I’m excited to share that I have earned some income. You can check out the project here: Game Frontend.`);
+    const message = encodeURIComponent(`Hi, I am ${name} and I’m excited to share that I have earned some income. You can check out the project here: https://game-frontend-neon.vercel.app/`);
     const whatsappUrl = `https://wa.me/?text=${message}`;
     window.open(whatsappUrl, '_blank');
 
