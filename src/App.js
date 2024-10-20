@@ -1,25 +1,38 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
-
+import Tasks from './components/Tasks';
+import Account from './components/Account';
+import Navbar from './components/Navbar';
+import Withdraw from './components/Withdraw';
+import Adds from './components/Adds';
+import Login from './components/Login';
+import Signup from './components/Signup';
 function App() {
+  const location = useLocation();
+
+  const noNavbarRoutes = ['/adds','/signup','/login']; 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {!noNavbarRoutes.includes(location.pathname) && <Navbar />}
+      <Routes>
+        <Route path="/account" element={<Account />} />
+        <Route path="/withdraw" element={<Withdraw />} />
+        <Route path="/adds" element={<Adds />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Tasks />} />
+      </Routes>
+    </>
   );
 }
 
-export default App;
+function AppWrapper() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}
+
+export default AppWrapper;
