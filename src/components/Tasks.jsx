@@ -67,13 +67,13 @@ function Tasks() {
   };
 
   const generateRandomPhoneNumber = () => {
-    const middlePart = Math.floor(Math.random() * 90000) + 10000; // Generates a 5-digit number
-    const lastPart = Math.floor(Math.random() * 9000) + 1000; // Generates a 4-digit number
+    const middlePart = Math.floor(Math.random() * 90000) + 10000; 
+    const lastPart = Math.floor(Math.random() * 9000) + 1000; 
     return `03${middlePart}****${lastPart}`;
   };
 
   const generateRandomAmount = () => {
-    return Math.floor(Math.random() * 401) + 100; // Generates a number between 100 and 500
+    return Math.floor(Math.random() * 41) * 10 + 100; 
   };
 
   const [randomPhone, setRandomPhone] = useState(generateRandomPhoneNumber());
@@ -83,7 +83,7 @@ function Tasks() {
     const interval = setInterval(() => {
       setRandomPhone(generateRandomPhoneNumber());
       setRandomAmount(generateRandomAmount());
-    }, 3000); // Updates every 3 seconds
+    }, 1000); // Updates every 3 seconds
 
     return () => clearInterval(interval);
   }, []);

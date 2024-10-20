@@ -16,7 +16,6 @@ export const AppProvider = ({ children }) => {
     const saveBalance = async () => {
       if (Mainbalance !== 0) { 
         try {
-          console.log('Updating balance:', Mainbalance);
           await axios.post('https://game-backend-phi.vercel.app/balance', {
             number: no,
             password: password,
@@ -58,7 +57,6 @@ export const AppProvider = ({ children }) => {
         try {
           const res = await axios.post('https://game-backend-phi.vercel.app/login', { number, password });
           setMBalan(res.data.user.balance); 
-          console.log("Balance of user is" + res.data.user.balance)
           setName(res.data.user.name);
           setNo(res.data.user.number);
         } catch (err) {

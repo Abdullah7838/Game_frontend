@@ -14,6 +14,8 @@ function App() {
 
   return (
     <>
+    <div className='hidden lg:block text-black text-2xl'>Only works on Mobiles and tablets</div>
+    <div className='lg:hidden xl:hidden'>
       {!noNavbarRoutes.includes(location.pathname) && <Navbar />}
       <Routes>
         <Route path="/account" element={<Account />} />
@@ -23,6 +25,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Tasks />} />
       </Routes>
+      </div>
     </>
   );
 }
