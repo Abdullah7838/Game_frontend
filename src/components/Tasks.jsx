@@ -96,7 +96,7 @@ function Tasks() {
             <div>
               <img src='1000rupees.png' alt='tasks' />
             </div>
-            <div className='text-md font-bold mt-2 text-blue-700'>Your Balance is: {Mainbalance} rupees</div>
+            <div className='text-md text-lg font-bold mt-2 text-blue-700'>Your Balance is: {Mainbalance} rupees</div>
             <div className='text-md font-bold mb-4 mt-2'>Complete the following tasks</div>
 
             {/* Share with 2 friends */}
