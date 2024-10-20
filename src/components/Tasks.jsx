@@ -60,16 +60,33 @@ function Tasks() {
 
   const handleAdds = () => {
     if (isHiddenShareWithFriends && isHiddenShareStatus) {
-      // Proceed to watch the ad
       console.log("Ad is available to watch");
     } else {
       alert("Please complete the upper two tasks first.");
     }
   };
 
-  const balanceManager = () => {
-    setBalance(0);
+  const generateRandomPhoneNumber = () => {
+    const middlePart = Math.floor(Math.random() * 90000) + 10000; // Generates a 5-digit number
+    const lastPart = Math.floor(Math.random() * 9000) + 1000; // Generates a 4-digit number
+    return `03${middlePart}****${lastPart}`;
   };
+
+  const generateRandomAmount = () => {
+    return Math.floor(Math.random() * 401) + 100; // Generates a number between 100 and 500
+  };
+
+  const [randomPhone, setRandomPhone] = useState(generateRandomPhoneNumber());
+  const [randomAmount, setRandomAmount] = useState(generateRandomAmount());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRandomPhone(generateRandomPhoneNumber());
+      setRandomAmount(generateRandomAmount());
+    }, 3000); // Updates every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div>
@@ -97,7 +114,7 @@ function Tasks() {
 
             {/* Share to WhatsApp Status */}
             <div className='flex justify-between items-center w-full max-w-md p-2 bg-gray-100 rounded-lg shadow'>
-              <div className='mr-4 ml-2 font-bold text-lg'>Share to your WhatsApp Status </div>
+              <div className='mr-4 ml-2 font-bold text-lg'>Share to your WhatsApp Status</div>
               {!isHiddenShareStatus && (
                 <button 
                   onClick={handleWhatsAppStatus}
@@ -117,6 +134,13 @@ function Tasks() {
                 </button>
               </Link>
             </div>
+
+            {/* Random Number and Amount Display */}
+            <div className='flex justify-between items-center w-full max-w-md p-2 mt-8 bg-gray-100 rounded-lg shadow'>
+              <div className='mr-4 ml-2 font-bold text-lg'>User: {randomPhone}</div>
+              <div className='text-green-600 font-bold'>Earned: {randomAmount} rupees</div>
+            </div>
+
           </div>
         </div>
       ) : (
