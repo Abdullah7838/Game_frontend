@@ -3,7 +3,7 @@ import { AppContext } from './AppContext'; // Import your context
 import { useNavigate } from 'react-router-dom';
 
 function Withdraw() {
-  const { login } = useContext(AppContext); // Assuming login state is managed in AppContext
+  const { login ,balance} = useContext(AppContext); // Assuming login state is managed in AppContext
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -16,7 +16,9 @@ function Withdraw() {
         <div className="bg-white p-8 rounded-lg shadow-md max-w-md text-center">
           <h1 className="text-2xl font-semibold mb-4">Withdraw Funds</h1>
           {/* Add the withdrawal form or information here */}
-          {/* <p>Withdrawal options and details will be shown here.</p> */}
+          <div>
+
+            </div>
           <p className='text-blue-700'>Opening on 31 October 2024 stay connected</p>
         </div>
       ) : (

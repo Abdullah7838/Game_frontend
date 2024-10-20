@@ -3,7 +3,7 @@ import { AppContext } from './AppContext'; // Import your context
 import { useNavigate } from 'react-router-dom';
 
 function Account() {
-  const { login ,setLogin ,name,no} = useContext(AppContext); // Assuming login state is managed in AppContext
+  const { login ,setLogin ,name,no,Mainbalance} = useContext(AppContext); // Assuming login state is managed in AppContext
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -18,10 +18,12 @@ const Logout=()=>{
         <div>
           {/* If logged in, display account information here */}
           <h1 className="text-2xl font-semibold mb-4">Welcome to Your Account</h1>
-          <div>Your Name is : <strong>{name}</strong></div>
-          <div>Your Number : <strong>{no}</strong></div>
-
-          <button className='w-full bg-blue-500 text-white p-1 rounded-full mt-12' onClick={Logout}>Logout</button>
+          <img src='dp.webp' alt='' className='w-20 h-30'/>
+          <div>Name: &nbsp;&nbsp;&nbsp;&nbsp;<strong>{name}</strong></div>
+          <div>Number: &nbsp;<strong>{no}</strong></div>
+          <div>Balance: &nbsp;&nbsp;<strong>{Mainbalance} rupees</strong></div>
+          <a href='https://abdullah.kesug.com/contact'><button className='w-full bg-blue-500 text-white p-1 rounded-full mt-12'>Contact Us</button></a>
+          <button className='w-full bg-blue-500 text-white p-1 rounded-full mt-4' onClick={Logout}>Logout</button>
           {/* Add more details or components related to the account */}
         </div>
       ) : (

@@ -6,6 +6,7 @@ import { ToastContainer, toast ,Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Signup() {
+    const [text,setText]=useState('Signup')
     const { setLogin,setNumb, setPass } = useContext(AppContext);
     const navigate = useNavigate();
     const [number, setNumber] = useState('');
@@ -15,13 +16,14 @@ function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        // Validate number length
         if (number.length !== 11) {
+            setText('Signup')
             toast.error('Number must be of 11 digits.'); // Length validation
             return;
         }
         
         try {
+            setText('Loading..')
             const res = await axios.post('https://game-backend-phi.vercel.app/signup', {
                 name,
                 password,
@@ -36,6 +38,7 @@ function Signup() {
                 navigate('/');
             }
         } catch (err) {
+            setText('Signup');
             console.error('Error:', err);
             if (err.response && err.response.status === 409) {
                 toast.error('Number already exists. Please use a different number.');
@@ -95,7 +98,7 @@ function Signup() {
                     type="submit"
                     className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition"
                 >
-                    Signup
+                    {text}
                 </button>
             </form>
             <ToastContainer

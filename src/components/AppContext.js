@@ -4,30 +4,46 @@ import axios from 'axios';
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [name,setname]=useState('')
-  const [no,setno]=useState('')
-  const [balance, setBalance] = useState(0);
-  const [number, setNumb] = useState(() => localStorage.getItem('number') || '');
-  const [password, setPass] = useState(() => localStorage.getItem('password') || '');
-  const [login, setLogin] = useState(() => localStorage.getItem('login') === 'true');
-  const [add, setAdd] = useState(() => localStorage.getItem('add') || 'Watch');
+  const [Mainbalance, setMBalan] = useState(0);
+  const [name, setName] = useState('');
+  const [no, setNo] = useState('');
+  const [number, setNumb] = useState('')
+  const [password, setPass] = useState('')
+  const [login, setLogin] = useState(false);
+  const [add, setAdd] = useState('Watch')
+
+  useEffect(() => {
+    const saveBalance = async () => {
+      if (Mainbalance !== 0) { 
+        try {
+          console.log('Updating balance:', Mainbalance);
+          await axios.post('https://game-backend-phi.vercel.app/balance', {
+            number: no,
+            password: password,
+            balance: Mainbalance, 
+          });
+        } catch (err) {
+          console.error('Error in saveBalance:', err); // Log the error
+        }
+      }
+    };
+    saveBalance();
+  }, [Mainbalance, no, password]); 
 
   useEffect(() => {
     localStorage.setItem('login', login);
   }, [login]);
 
-  useEffect(() => {
-    localStorage.setItem('number', number);
-  }, [number]);
+  // useEffect(() => {
+  //   localStorage.setItem('number', number);
+  // }, [number]);
 
-  useEffect(() => {
-    localStorage.setItem('password', password);
-  }, [password]);
+  // useEffect(() => {
+  //   localStorage.setItem('password', password);
+  // }, [password]);
 
-  useEffect(() => {
-    localStorage.setItem('add', add);
-  }, [add]);
 
+  // Logout function
   const handleLogout = () => {
     setLogin(false);
     setNumb('');
@@ -35,17 +51,40 @@ export const AppProvider = ({ children }) => {
     localStorage.removeItem('number');
     localStorage.removeItem('password');
   };
-useEffect(()=>{
-  const fetchall=async()=>{
-  const res =await axios.post('https://game-backend-phi.vercel.app/login',{number,password});
-  setBalance(res.data.user.balance);
-  setname(res.data.user.name)
-  setno(res.data.user.number)
-};
-fetchall();
-})
+
+  useEffect(() => {
+    const fetchAll = async () => {
+      if (number && password) { 
+        try {
+          const res = await axios.post('https://game-backend-phi.vercel.app/login', { number, password });
+          setMBalan(res.data.user.balance); 
+          console.log("Balance of user is" + res.data.user.balance)
+          setName(res.data.user.name);
+          setNo(res.data.user.number);
+        } catch (err) {
+          console.error('Error while fetching details in context:', err);
+        }
+      }
+    };
+    fetchAll();
+  }, [number, password]); 
+
   return (
-    <AppContext.Provider value={{ add, setAdd, login, setLogin, balance, setBalance, number, setNumb, password, setPass, handleLogout ,name,no}}>
+    <AppContext.Provider value={{ 
+      add, 
+      setAdd, 
+      login, 
+      setLogin, 
+      number, 
+      setNumb, 
+      password, 
+      setPass, 
+      handleLogout, 
+      name, 
+      no, 
+      Mainbalance, 
+      setMBalan 
+    }}>
       {children}
     </AppContext.Provider>
   );

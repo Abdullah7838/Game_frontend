@@ -7,11 +7,13 @@ import { AppContext } from './AppContext';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
+    const [text,setText]=useState('Login')
     const [number, setNumber] = useState('');
     const [password, setPassword] = useState('');
     const { setLogin,setNumb, setPass  } = useContext(AppContext);
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
+        setText('Loading');
         e.preventDefault();
                 console.log('Number:', number, 'Password:', password);
 
@@ -29,6 +31,7 @@ function Login() {
                 navigate('/'); 
             }
         } catch (error) {
+            setText('Login');
             console.error('Login error:', error);
             if (error.response && error.response.status === 401) {
                 toast.error('Invalid credentials. Please try again.');
@@ -74,7 +77,7 @@ function Login() {
                     type="submit"
                     className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition"
                 >
-                    Login
+                    {text}
                 </button>
                 <div className='mt-4'>No account yet? <Link to='/signup'><button className='text-blue-600 text-lg ml-4'>Signup now</button></Link></div>
             </form>
