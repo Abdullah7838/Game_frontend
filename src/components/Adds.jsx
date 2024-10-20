@@ -5,7 +5,7 @@ import Adstera from './Adstera';
 import Adstera2 from './Adstera2';
 
 function Adds() {
-  const [timeLeft, setTimeLeft] = useState(10);
+  const [timeLeft, setTimeLeft] = useState(20);
   const navigate = useNavigate();
   const { setAdd, Mainbalance, setMBalan } = useContext(AppContext);
   const hasUpdated = useRef(false); 
