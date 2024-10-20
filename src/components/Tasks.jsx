@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Tasks() {
   const navigate = useNavigate(); 
-  const { add, login, setBalance, Mainbalance, setMBalan } = useContext(AppContext);
+  const { add, login, setBalance, Mainbalance, setMBalan,name } = useContext(AppContext);
 
   const handleLoginClick = () => {
     navigate('/login'); 
@@ -29,7 +29,7 @@ function Tasks() {
   }, [count]);
 
   const handleWhatsAppShare = () => {
-    const message = encodeURIComponent("I have earned 1000 rupees, go check out this: salidin.com");
+    const message = encodeURIComponent(`Hi, I am ${name} and I’m excited to share that I have earned some income. You can check out the project here: Game Frontend.`);
     const whatsappUrl = `https://wa.me/?text=${message}`;
     window.open(whatsappUrl, '_blank');
 
@@ -45,7 +45,7 @@ function Tasks() {
   };
 
   const handleWhatsAppStatus = () => {
-    const message = encodeURIComponent("I have earned 1000 rupees, go check out this: salidin.com");
+    const message = encodeURIComponent(`Hi, I am ${name} and I’m excited to share that I have earned some income. You can check out the project here: Game Frontend.`);
     const whatsappUrl = `https://wa.me/?text=${message}`;
     window.open(whatsappUrl, '_blank');
 

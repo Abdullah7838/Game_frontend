@@ -39,7 +39,7 @@ export default function Adstera() {
   }, []);
 
   return (
-    <div className="my-4 xs:flex sm:flex md:flex lg:flex justify-center ml-20">
+    <div className="my-4 xs:flex sm:flex md:flex lg:flex justify-center ml-24">
       {/* The container where the ad will be rendered */}
       <div ref={adRef} id="container-442e968534a2082b09221b3757de4db4"></div>
     </div>
