@@ -15,7 +15,7 @@ function Login() {
     const handleSubmit = async (e) => {
         setText('Loading');
         e.preventDefault();
-                console.log('Number:', number, 'Password:', password);
+                // console.log('Number:', number, 'Password:', password);
 
         try {
             const response = await axios.post('https://game-backend-phi.vercel.app/login', {

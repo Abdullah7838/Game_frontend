@@ -28,14 +28,13 @@ const AdminPanel = () => {
         const inputPassword = prompt('Enter password:');
 
         if (inputUsername === 'user' && inputPassword === '1') {
-            // Store credentials for future sessions
             sessionStorage.setItem('username', inputUsername);
             sessionStorage.setItem('password', inputPassword);
             setIsAuthenticated(true);
             fetchUsers();
         } else {
             alert('Invalid credentials! Access denied.');
-            window.location.reload(); // Reload the page to prompt again
+            window.location.reload(); 
         }
     };
 
@@ -80,7 +79,7 @@ const AdminPanel = () => {
     }
 
     if (!isAuthenticated) {
-        return null; // Or a loading state while waiting for authentication
+        return null; 
     }
 
     return (

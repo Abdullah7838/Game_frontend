@@ -2,13 +2,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AppContext } from './AppContext';
 import { useNavigate } from 'react-router-dom';
-
+import Popup from './Popup';
 function Tasks() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const { add, login, setBalance, Mainbalance, setMBalan, name } = useContext(AppContext);
 
   const handleLoginClick = () => {
-    navigate('/login'); 
+    navigate('/login');
   };
 
   const [do1, sdo1] = useState('Do');
@@ -54,13 +54,13 @@ function Tasks() {
   };
 
   const generateRandomPhoneNumber = () => {
-    const middlePart = Math.floor(Math.random() * 9000) + 1000; 
-    const lastPart = Math.floor(Math.random() * 90) + 10; 
+    const middlePart = Math.floor(Math.random() * 9000) + 1000;
+    const lastPart = Math.floor(Math.random() * 90) + 10;
     return `03${middlePart}****${lastPart}`;
   };
 
   const generateRandomAmount = () => {
-    return Math.floor(Math.random() * 41) * 10 + 100; 
+    return Math.floor(Math.random() * 41) * 10 + 100;
   };
 
   const [randomPhone, setRandomPhone] = useState(generateRandomPhoneNumber());
@@ -79,6 +79,9 @@ function Tasks() {
     <div className="min-h-screen bg-gray-50 flex flex-col items-center p-4">
       {login ? (
         <div className="flex flex-col items-center w-full max-w-sm">
+          {/* popup */}
+          <Popup></Popup>
+
           <img src='1000rupees.png' alt='tasks' className="mb-4" />
           <div className='text-lg font-bold text-blue-700 mb-2'>Your Balance is: {Mainbalance} rupees</div>
           <div className='text-md font-bold mb-4'>Complete the following tasks</div>
@@ -87,7 +90,7 @@ function Tasks() {
           <div className='flex justify-between items-center w-full p-3 bg-white rounded-lg shadow-md mb-4'>
             <div className='font-semibold'>Share with 2 friends</div>
             {!isHiddenShareWithFriends && (
-              <button 
+              <button
                 onClick={handleWhatsAppShare}
                 className='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition'
               >
@@ -100,7 +103,7 @@ function Tasks() {
           <div className='flex justify-between items-center w-full p-3 bg-white rounded-lg shadow-md mb-4'>
             <div className='font-semibold'>Share to your WhatsApp Status</div>
             {!isHiddenShareStatus && (
-              <button 
+              <button
                 onClick={handleWhatsAppStatus}
                 className='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition'
               >
@@ -113,9 +116,9 @@ function Tasks() {
           <div className='flex justify-between items-center w-full p-3 bg-white rounded-lg shadow-md mb-4'>
             <div className='font-semibold'>Watch an Ad & get 10 rupees</div>
             {/* <Link to='/adds' > */}
-              <button onClick={handleAdds} className='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition'>
-                {add}
-              </button>
+            <button onClick={handleAdds} className='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition'>
+              {add}
+            </button>
             {/* </Link> */}
           </div>
 

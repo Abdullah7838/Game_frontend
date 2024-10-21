@@ -22,7 +22,7 @@ export const AppProvider = ({ children }) => {
             balance: Mainbalance, 
           });
         } catch (err) {
-          console.error('Error in saveBalance:', err); // Log the error
+          console.error('Error in saveBalance:', err); 
         }
       }
     };
