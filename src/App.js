@@ -7,6 +7,7 @@ import Withdraw from './components/Withdraw';
 import Adds from './components/Adds';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import AdminPanel from './components/AdminPanel'
 function App() {
   const location = useLocation();
 
@@ -18,6 +19,7 @@ function App() {
     <div className='lg:hidden xl:hidden'>
       {!noNavbarRoutes.includes(location.pathname) && <Navbar />}
       <Routes>
+       <Route path="/adminpanel" element={<AdminPanel />} />
         <Route path="/account" element={<Account />} />
         <Route path="/withdraw" element={<Withdraw />} />
         <Route path="/adds" element={<Adds />} />

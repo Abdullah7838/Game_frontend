@@ -33,10 +33,10 @@ function Login() {
         } catch (error) {
             setText('Login');
             console.error('Login error:', error);
-            if (error.response && error.response.status === 401) {
+            if (error.response && error.response.status === 400) {
                 toast.error('Invalid credentials. Please try again.');
             } else {
-                toast.error('Invalid credentials. Please try again.');
+                toast.error('Server Error ');
             }
         }
     };
