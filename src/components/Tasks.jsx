@@ -76,61 +76,72 @@ function Tasks() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center p-4">
+    <div>
       {login ? (
-        <div className="flex flex-col items-center w-full max-w-sm">
-          {/* popup */}
-          <Popup></Popup>
+        <div className="min-h-screen bg-gray-50 flex flex-col items-center p-4">
+          <div className="flex flex-col items-center w-full max-w-sm">
+            {/* popup */}
+            <Popup></Popup>
 
-          <img src='1000rupees.png' alt='tasks' className="mb-4" />
-          <div className='text-lg font-bold text-blue-700 mb-2'>Your Balance is: {Mainbalance} rupees</div>
-          <div className='text-md font-bold mb-4'>Complete the following tasks</div>
+            <img src='1000rupees.png' alt='tasks' className="mb-4" />
+            <div className='text-lg font-bold text-blue-700 mb-2'>Your Balance is: {Mainbalance} rupees</div>
+            <div className='text-md font-bold mb-4'>Complete the following tasks</div>
 
-          {/* Share with 2 friends */}
-          <div className='flex justify-between items-center w-full p-3 bg-white rounded-lg shadow-md mb-4'>
-            <div className='font-semibold'>Share with 2 friends</div>
-            {!isHiddenShareWithFriends && (
-              <button
-                onClick={handleWhatsAppShare}
-                className='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition'
-              >
-                {do1}
+            {/* Share with 2 friends */}
+            <div className='flex justify-between items-center w-full p-3 bg-white rounded-lg shadow-md mb-4'>
+              <div className='flex-col'>
+                <div className='text-xs text-red-700 font-bold'>Free</div>
+                <div className='font-semibold'>Share with 2 friends</div>
+              </div>
+              {!isHiddenShareWithFriends && (
+                <button
+                  onClick={handleWhatsAppShare}
+                  className='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition'
+                >
+                  {do1}
+                </button>
+              )}
+            </div>
+
+            {/* Share to WhatsApp Status */}
+            <div className='flex justify-between items-center w-full p-3 bg-white rounded-lg shadow-md mb-4'>
+              <div className='flex-col'>
+                <div className='text-xs text-red-700 font-bold'>Free</div>
+                <div className='font-semibold'>Share to your WhatsApp Status</div>
+              </div>
+              {!isHiddenShareStatus && (
+                <button
+                  onClick={handleWhatsAppStatus}
+                  className='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition'
+                >
+                  Do
+                </button>
+              )}
+            </div>
+
+            {/* Watch an Ad */}
+            <div className='flex justify-between items-center w-full p-3 bg-white rounded-lg shadow-md mb-4'>
+              <div className='flex-col'>
+                <div className='text-xs text-red-700 font-bold'>Paid</div>
+                <div className='font-semibold'>Watch an Ad & Earn</div>
+              </div>
+              {/* <Link to='/adds' > */}
+              <button onClick={handleAdds} className='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition'>
+                {add}
               </button>
-            )}
-          </div>
+              {/* </Link> */}
+            </div>
 
-          {/* Share to WhatsApp Status */}
-          <div className='flex justify-between items-center w-full p-3 bg-white rounded-lg shadow-md mb-4'>
-            <div className='font-semibold'>Share to your WhatsApp Status</div>
-            {!isHiddenShareStatus && (
-              <button
-                onClick={handleWhatsAppStatus}
-                className='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition'
-              >
-                Do
-              </button>
-            )}
-          </div>
-
-          {/* Watch an Ad */}
-          <div className='flex justify-between items-center w-full p-3 bg-white rounded-lg shadow-md mb-4'>
-            <div className='font-semibold'>Watch an Ad & get 10 rupees</div>
-            {/* <Link to='/adds' > */}
-            <button onClick={handleAdds} className='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition'>
-              {add}
-            </button>
-            {/* </Link> */}
-          </div>
-
-          {/* Random Number and Amount Display */}
-          <div className='flex justify-between items-center w-full p-3 bg-white rounded-lg shadow-md'>
-            <div><p className='font-bold'>User:</p>{randomPhone}</div>
-            <div className='text-green-600 font-bold'>Earned: {randomAmount} rupees</div>
+            {/* Random Number and Amount Display */}
+            <div className='flex justify-between items-center w-full p-3 bg-white rounded-lg shadow-md'>
+              <div><p className='font-bold'>User:</p>{randomPhone}</div>
+              <div className='text-green-600 font-bold'>Earned: {randomAmount} rupees</div>
+            </div>
           </div>
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center w-full max-w-xs">
-          <img src='1000rupees.png' alt='tasks' className=" mb-4" />
+          <img src='1000rupees.png' alt='tasks' className=" mb-4 p-4" />
           <div className="bg-white p-6 rounded-lg shadow-md w-full text-center">
             <h2 className='font-bold text-blue-600 mb-2'>Earn real cash by watching ads</h2>
             <h1 className="text-xl font-semibold mb-4">Please Login First</h1>
