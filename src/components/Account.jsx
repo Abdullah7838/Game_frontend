@@ -17,7 +17,7 @@ function Account() {
   return (
     <div>
       {login ? (
-        <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg">
+        <div className="bg-white shadow-lg rounded-lg pl-8 pr-8 w-full max-w-lg">
           <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-50 to-gray-100 p-6">
             <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
               Welcome to <span className="text-blue-500">EARNINFY</span>
@@ -51,6 +51,7 @@ function Account() {
               </button>
             </div>
           </div>
+          <div className='flex justify-center text-gray-600'>Version: 1.01v</div>
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center w-full max-w-xs">
