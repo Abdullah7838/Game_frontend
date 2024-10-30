@@ -22,7 +22,7 @@ function Withdraw() {
 
  const WithdrawAmount=(e)=>{
   e.preventDefault();
-  alert('Withdraws are opening on 31st October Stay Connected');
+  alert('Withdraws are opening on 5th November Stay Connected');
  }
   return (
     <div>
