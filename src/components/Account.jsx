@@ -54,8 +54,8 @@ function Account() {
           <div className='flex justify-center text-gray-600'>Version: 1.01v</div>
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center w-full max-w-xs">
-          <img src='1000rupees.png' alt='tasks' className=" mb-4 p-4" />
+        <div className="flex flex-col items-center justify-center w-full max-w-md">
+          <img src='1000rupees.png' alt='tasks' className=" mb-4 p-2" />
           <div className="bg-white p-6 rounded-lg shadow-md w-full text-center">
             <h2 className='font-bold text-blue-600 mb-2'>Earn real cash by watching ads</h2>
             <h1 className="text-xl font-semibold mb-4">Please Login First</h1>
