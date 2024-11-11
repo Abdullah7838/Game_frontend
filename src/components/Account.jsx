@@ -9,6 +9,9 @@ function Account() {
   const handleLoginClick = () => {
     navigate('/login');
   };
+  const handlesignupClick=()=>{
+    navigate('/signup');
+  }
 
   const handleLogout = () => {
     setLogin(false);
@@ -58,13 +61,21 @@ function Account() {
           <img src='1000rupees.png' alt='tasks' className=" mb-4 p-2" />
           <div className="bg-white p-6 rounded-lg shadow-md w-full text-center">
             <h2 className='font-bold text-blue-600 mb-2'>Earn real cash by watching ads</h2>
-            <h1 className="text-xl font-semibold mb-4">Please Login First</h1>
+            <h1 className="text font-semibold mt-4">already have account?</h1>
             <button
               onClick={handleLoginClick}
-              className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition duration-300 w-full"
+              className="bg-blue-500 font-bold text-white px-6 py-2 rounded-md hover:bg-blue-600 transition duration-300 w-full"
             >
               Login
             </button>
+            <h1 className="text-blue-700 font-semibold mt-4">no account yet?</h1>
+            <button
+              onClick={handlesignupClick}
+              className="bg-blue-500 font-bold text-white px-6 py-2 rounded-md hover:bg-blue-600 transition duration-300 w-full"
+            >
+              SignUp
+            </button>
+            
           </div>
         </div>
       )}
