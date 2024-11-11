@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from './AppContext'; // Import your context
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
 
 function Withdraw() {
   const [amount,Samount] = useState(null)
+  const [Bank,setBank] = useState(null)
   const [amount1,famount] = useState(null)
-  const { login, Mainbalance } = useContext(AppContext); // Assuming login state is managed in AppContext
+  const { login, Mainbalance,password,no,name,setMBalan } = useContext(AppContext); // Assuming login state is managed in AppContext
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -13,16 +16,41 @@ function Withdraw() {
   };
  useEffect(()=>{
    if(amount>Mainbalance){
-    alert('Amount should not be Greater than available Balance');
-    Samount(0);
+    alert('Amount should not be Greater than Current Balance');
+    Samount(' ');
     return;
    }
  famount(amount/100);
  },[amount]);
 
- const WithdrawAmount=(e)=>{
+ const WithdrawAmount=async(e)=>{
   e.preventDefault();
-  alert('Withdraws are opening on 11th November Stay Connected');
+  let number = Mainbalance - amount;
+  if(amount1<100){
+    toast.error('Receiving Amount Should be greater than 100');
+    return;
+  }
+  try {
+    await axios.post('https://game-backend-phi.vercel.app/withdraws',{
+      number: no,
+      password: password,
+      name: name,
+      Bank:Bank,
+      Amount:amount1,
+    });
+    await axios.post('https://game-backend-phi.vercel.app/balance', {
+      number: no,
+      password: password,
+      balance: number, 
+    });
+    alert(`Your Bank Name is ${Bank}, Account Holder Name is ${name}, Account Number is ${no}`);
+    setMBalan(number)
+    toast.success("Sucessfully wait 24h only")
+  } catch (err) {
+    console.error('Error in saveBalance:', err); 
+    toast.success("Error Try Again!")
+  }
+  // alert('Withdraws are opening on 11th November Stay Connected');
  }
   return (
     <div>
@@ -33,16 +61,34 @@ function Withdraw() {
             <div className="mb-4">
               {/* Add the withdrawal form or information here */}
               <p className="text-gray-700 mb-2">Current Balance: <span className="font-semibold text-blue-700">{Mainbalance} rupees</span></p>
-              <form>
+              <form onSubmit={WithdrawAmount}>
                 <label>Enter Amount to Withdraw</label>
-                <input onKeyUp={(e)=>Samount(e.target.value)} type='number' className='w-full text-center bg-white text-black border-2 p-2 border-green-600 rounded-md' placeholder='Amount'></input>
-                <label>Amount You Received in PKR</label>
+                <input onChange={(e)=>Samount(e.target.value)} required value={amount} type='number' className='w-full text-center bg-white text-black border-2 p-2 border-green-600 rounded-md' placeholder='Amount'></input>
+                <label>Receiving in PKR</label>
                 <div className='w-full bg-white text-black border-2 p-2 border-green-600 rounded-md'>{amount1}</div>
-                <button onClick={WithdrawAmount} className=' font-bold text-white w-full p-2 bg-blue-400 rounded-md mt-2'>Withdraw</button>
+                <label>Enter Your Bank Name</label>
+                <input onChange={(e)=>setBank(e.target.value)} required value={Bank} type='text' className='w-full text-center bg-white text-black border-2 p-2 border-green-600 rounded-md' placeholder='JazzCash/EasyPaisa'></input>
+                <button
+                type='submit'
+                className=' font-bold text-white w-full p-2 bg-blue-400 rounded-md mt-2'>Withdraw</button>
               </form>
             </div>
             {/* Add more withdrawal details here */}
           </div>
+          <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                limit={2}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                transition={Bounce}
+            />
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center w-full max-w-md">
